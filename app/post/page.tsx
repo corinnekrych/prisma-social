@@ -1,3 +1,15 @@
+import {
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  Box,
+  Chip,
+  Link,
+  Stack,
+  Divider,
+} from '@mui/material';
+
 async function getPosts() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   const res = await fetch(`${apiUrl}/api/posts`, {
@@ -15,57 +27,67 @@ export default async function PostsPage() {
   const posts = await getPosts();
 
   return (
-    <div className="min-h-screen p-8">
-      <main className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">All Posts</h1>
+    <Container maxWidth="md" sx={{ py: 8, minHeight: '100vh' }}>
+      <Box component="main">
+        <Typography variant="h2" component="h1" gutterBottom fontWeight="bold">
+          All Posts
+        </Typography>
 
         {posts.length === 0 ? (
-          <p className="text-gray-600">No posts yet. Run the seed script to add some data!</p>
+          <Typography color="text.secondary">
+            No posts yet. Run the seed script to add some data!
+          </Typography>
         ) : (
-          <div className="space-y-6">
-            {posts.map((post) => (
-              <article key={post.id} className="border rounded-lg p-6 shadow-sm">
-                <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-                <p className="text-gray-600 mb-4">
-                  By {post.author.name} ({post.author.email})
-                </p>
-                <p className="text-gray-800 mb-4">{post.content}</p>
-                <div className="flex items-center gap-4 text-sm">
-                  <span className={`px-3 py-1 rounded ${post.published ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}`}>
-                    {post.published ? "Published" : "Draft"}
-                  </span>
-                  <span className="text-gray-500">
-                    {post.comments.length} {post.comments.length === 1 ? "comment" : "comments"}
-                  </span>
-                </div>
+          <Stack spacing={3}>
+            {posts.map((post: any) => (
+              <Card key={post.id} variant="outlined">
+                <CardContent>
+                  <Typography variant="h5" component="h2" gutterBottom>
+                    {post.title}
+                  </Typography>
+                  <Typography color="text.secondary" gutterBottom>
+                    By {post.author.name} ({post.author.email})
+                  </Typography>
+                  <Typography variant="body1" paragraph>
+                    {post.content}
+                  </Typography>
+                  <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+                    <Chip
+                      label={post.published ? "Published" : "Draft"}
+                      color={post.published ? "success" : "default"}
+                      size="small"
+                    />
+                    <Typography variant="body2" color="text.secondary">
+                      {post.comments.length} {post.comments.length === 1 ? "comment" : "comments"}
+                    </Typography>
+                  </Stack>
 
-                {post.comments.length > 0 && (
-                  <div className="mt-4 pl-4 border-l-2 border-gray-200">
-                    <h3 className="font-semibold mb-2">Comments:</h3>
-                    <div className="space-y-2">
-                      {post.comments.map((comment) => (
-                        <div key={comment.id} className="text-sm">
-                          <span className="font-medium">{comment.author.name}:</span>{" "}
-                          <span className="text-gray-700">{comment.content}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </article>
+                  {post.comments.length > 0 && (
+                    <Box sx={{ pl: 2, borderLeft: 2, borderColor: 'divider' }}>
+                      <Typography variant="subtitle2" gutterBottom fontWeight="bold">
+                        Comments:
+                      </Typography>
+                      <Stack spacing={1}>
+                        {post.comments.map((comment: any) => (
+                          <Typography key={comment.id} variant="body2">
+                            <strong>{comment.author.name}:</strong> {comment.content}
+                          </Typography>
+                        ))}
+                      </Stack>
+                    </Box>
+                  )}
+                </CardContent>
+              </Card>
             ))}
-          </div>
+          </Stack>
         )}
 
-        <div className="mt-8">
-          <a
-            href="/"
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
+        <Box sx={{ mt: 4 }}>
+          <Link href="/" color="primary" underline="hover">
             ← Back to home
-          </a>
-        </div>
-      </main>
-    </div>
+          </Link>
+        </Box>
+      </Box>
+    </Container>
   );
 }

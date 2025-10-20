@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import ThemeProvider from "./ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Prisma Social",
@@ -13,8 +13,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
