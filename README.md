@@ -29,6 +29,8 @@ Add a query to get the 5 most active users based on the number of posts.
 Add transaction support for creating a post and initial comment atomically.
 
 ## Getting Started
+> NOTE :octocat: All code available in `main` branch
+
 ### Step 1: Create the project
 ```
 mkdir prisma-social && cd prisma-social
@@ -66,8 +68,17 @@ npx ts-node src/queries.ts
 ```
 
 ## Advanced features
-### nextjs API routes
+### Step 7: nextjs API routes
+> NOTE :octocat: All code available in `nextjs-all-posts-route` branch
 
-npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias "@/*" --turbopack --use-npm                  │
-│   Generate Next.js project with TypeScript    
+To run:
+```
+docker run --name prisma-postgres -e POSTGRES_PASSWORD=mysecret -e POSTGRES_USER=dev -e POSTGRES_DB=dev_db -p 5432:5432 -d postgres:15
+npm install
+npx prisma generate
+npx prisma migrate dev --name init
+npx prisma generate
+npx ts-node prisma/seed.ts
+npm run dev
+```
 

@@ -12,10 +12,10 @@ async function main() {
     });
 
     // Alice writes a post
-    const post = await prisma.post.create({
+    const alicePost = await prisma.post.create({
         data: {
             title: "Hello World",
-            content: "This is my first post",
+            content: "I am Alice and this is my first post",
             published: true,
             authorId: alice.id
         }
@@ -25,7 +25,16 @@ async function main() {
     await prisma.comment.create({
         data: {
             content: "Great post, Alice!",
-            postId: post.id,
+            postId: alicePost.id,
+            authorId: bob.id
+        }
+    });
+
+    const bobPost = await prisma.post.create({
+        data: {
+            title: "Hello",
+            content: "I am Bob. I love programming.",
+            published: true,
             authorId: bob.id
         }
     });
