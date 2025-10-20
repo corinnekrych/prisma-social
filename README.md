@@ -65,3 +65,9 @@ Create queries
 npx ts-node src/queries.ts
 ```
 
+## Advanced features
+### nextjs API routes
+
+npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias "@/*" --turbopack --use-npm                  │
+│   Generate Next.js project with TypeScript    
+
