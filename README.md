@@ -80,7 +80,6 @@ npx prisma migrate reset
 npm run seed
 npm run dev
 ```
-
 Add CRUD API routes for User and Post in Next.js API routes. See [Next.js API Routes](./pages/api) for reference
 ```
   curl -X POST http://localhost:3000/api/posts \

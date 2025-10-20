@@ -1,9 +1,13 @@
 {
   "name": "prisma-social",
   "version": "1.0.0",
-  "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "tsx prisma/seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,9 +15,25 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.4",
+    "@mui/material-nextjs": "^7.3.3",
     "@prisma/client": "^6.17.1",
+    "next": "^15.1.0",
     "prisma": "^6.17.1",
-    "ts-node": "^10.9.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.1.0",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }
