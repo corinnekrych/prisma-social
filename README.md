@@ -2,7 +2,7 @@
 is a social media app built with Prisma. It's a great way to get started with Prisma.
 
 ## Scenario
-You are building a mini social app where users can post articles and comment on them. 
+You are building a mini social app where users can post articles and comment on them.
 You’ll use Node.js + TypeScript + Prisma + PostgreSQL (or Prisma Cloud).
 
 ## Requirements
@@ -91,3 +91,4 @@ Add CRUD API routes for User and Post in Next.js API routes. See [Next.js API Ro
       "authorId": 2
     }'
 ```
+
