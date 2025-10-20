@@ -65,7 +65,7 @@ npx ts-node prisma/seed.ts
 Create queries
 ```
 npx ts-node src/queries.ts
-
+```
 
 ## Advanced features
 ### Step 7: nextjs API routes
