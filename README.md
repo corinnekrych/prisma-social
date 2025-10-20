@@ -76,9 +76,18 @@ To run:
 docker run --name prisma-postgres -e POSTGRES_PASSWORD=mysecret -e POSTGRES_USER=dev -e POSTGRES_DB=dev_db -p 5432:5432 -d postgres:15
 npm install
 npx prisma generate
-npx prisma migrate dev --name init
-npx prisma generate
-npx ts-node prisma/seed.ts
+npx prisma migrate reset
+npm run seed
 npm run dev
 ```
-
+Add CRUD API routes for User and Post in Next.js API routes. See [Next.js API Routes](./pages/api) for reference
+```
+  curl -X POST http://localhost:3000/api/posts \
+    -H "Content-Type: application/json" \
+    -d '{
+      "title": "Draft Post",
+      "content": "This post is not published yet",
+      "published": false,
+      "authorId": 2
+    }'
+```

@@ -1,19 +1,18 @@
-import { prisma } from "@/lib/prisma";
+async function getPosts() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  const res = await fetch(`${apiUrl}/api/posts`, {
+    cache: "no-store", // Disable caching for dynamic data
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+
+  return res.json();
+}
 
 export default async function PostsPage() {
-  const posts = await prisma.post.findMany({
-    include: {
-      author: true,
-      comments: {
-        include: {
-          author: true,
-        },
-      },
-    },
-    orderBy: {
-      id: "desc",
-    },
-  });
+  const posts = await getPosts();
 
   return (
     <div className="min-h-screen p-8">
