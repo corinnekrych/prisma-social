@@ -75,10 +75,9 @@ To run:
 ```
 docker run --name prisma-postgres -e POSTGRES_PASSWORD=mysecret -e POSTGRES_USER=dev -e POSTGRES_DB=dev_db -p 5432:5432 -d postgres:15
 npm install
-npx prisma generate
 npx prisma migrate dev --name init
 npx prisma generate
 npx ts-node prisma/seed.ts
 npm run dev
 ```
-
+Go to http://localhost:3000/post to see all posts.
