@@ -69,7 +69,7 @@ npx ts-node src/queries.ts
 
 ## Advanced features
 ### Step 7: nextjs API routes
-> NOTE :octocat: All code available in `nextjs-all-posts-route` branch
+> NOTE :octocat: All code available in `nextjs-CRUD-user-post` branch
 
 To run:
 ```
