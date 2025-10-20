@@ -2,7 +2,7 @@
 is a social media app built with Prisma. It's a great way to get started with Prisma.
 
 ## Scenario
-You are building a mini social app where users can post articles and comment on them. 
+You are building a mini social app where users can post articles and comment on them.
 You’ll use Node.js + TypeScript + Prisma + PostgreSQL (or Prisma Cloud).
 
 ## Requirements
@@ -29,6 +29,8 @@ Add a query to get the 5 most active users based on the number of posts.
 Add transaction support for creating a post and initial comment atomically.
 
 ## Getting Started
+> NOTE :octocat: All code available in `main` branch
+
 ### Step 1: Create the project
 ```
 mkdir prisma-social && cd prisma-social
@@ -65,3 +67,17 @@ Create queries
 npx ts-node src/queries.ts
 ```
 
+## Advanced features
+### Step 7: nextjs API routes
+> NOTE :octocat: All code available in `nextjs-all-posts-route` branch
+
+To run:
+```
+docker run --name prisma-postgres -e POSTGRES_PASSWORD=mysecret -e POSTGRES_USER=dev -e POSTGRES_DB=dev_db -p 5432:5432 -d postgres:15
+npm install
+npx prisma migrate dev --name init
+npx prisma generate
+npx ts-node prisma/seed.ts
+npm run dev
+```
+Go to http://localhost:3000/post to see all posts.
